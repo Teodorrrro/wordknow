@@ -1,15 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="alert alert-success" role="alert">
+      <strong>Удаление слова</strong>
+    </div>
 
 <form action="{% url 'delete_word' user_id word_id %}" method="post">
     {% csrf_token %}
-    <input type="submit" value="Удалить слово"/>
+    <input type="submit" class="btn btn-danger" value="Удалить слово"/>
 </form>
-
-</body>
-</html>
+{% endblock %}

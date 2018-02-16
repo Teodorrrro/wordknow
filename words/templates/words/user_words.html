@@ -1,16 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h1>{{ user.user_name }}</h1>
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="alert alert-success" role="alert">
+      <strong>Список слов пользователя {{ user.user_name }}:</strong>
+    </div>
+<ul class="list-group">
     {% for word in words %}
-        <li>{{ word.word_text }} --- {{ word.translation_text }} -- <a href="{% url 'edit_word' user.id word.id %}">Изменить</a> / <a href="{% url 'delete_word' user.id word.id %}">Удалить</a></li>
+        <li class="list-group-item" style="display: block;" >
+            {{ word.word_text }} - {{ word.translation_text }} -
+
+            <a class="btn btn-danger btn-sm float-right"
+               href="{% url 'delete_word' user.id word.id %}">
+                Удалить
+            </a>
+            <a class="btn btn-success btn-sm float-right"
+                 href="{% url 'edit_word' user.id word.id %}">
+                Изменить
+            </a>
+    {% empty %}
+        <li class="list-group-item" style="display: block;">У пользователя пока что нет слов!</li>
     {% endfor %}
 
+</ul>
+
 <hr>
-<a href="{% url 'create_word' user.id %}">Добавить слово</a>
-</body>
-</html>
+<a class="btn btn-success" href="{% url 'create_word' user.id %}">Добавить слово</a>
+{% endblock %}

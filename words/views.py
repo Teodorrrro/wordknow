@@ -59,7 +59,7 @@ def edit_word(request, user_id, word_id):
     # GET - загрузка страницы; POST - удаление word
     word = Word.objects.get(pk=word_id)
     if request.method == 'POST':
-        form = WordTranslationForm(request.POST)
+        form = WordTranslationForm(data=request.POST)
         if form.is_valid():
             word_text = form.cleaned_data['word_text']
             translation_text = form.cleaned_data['translation_text']
@@ -68,10 +68,12 @@ def edit_word(request, user_id, word_id):
                 update(word_text=word_text, translation_text=translation_text)
             return redirect(user_words, user_id)
     else:
-        form = WordTranslationForm()
+        word_text = Word.objects.get(pk=word_id).word_text
+        translation_text = Word.objects.get(pk=word_id).translation_text
+        form = WordTranslationForm(data={'word_text': word_text, 'translation_text': translation_text})
     return render(request, 'words/edit_word.html', {
-        # 'user_id': user_id,
-        # 'word_id': word_id,
-        # 'word': word,
+        'user_id': user_id,
+        'word_id': word_id,
+        'word': word,
         'form': form,
     })

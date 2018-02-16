@@ -1,5 +1,19 @@
-<h1>Пользователи</h1>
-{% for user in users %}
-        <li><a href="{% url 'user_words' user.id %}">{{ user.user_name }}</a></li>
+{% extends 'index.html' %}
+
+{% block content %}
+    <div class="alert alert-success" role="alert">
+      <strong>Пользователи:</strong>
+    </div>
+
+    <ul class="list-group">
+    {% for user in users %}
+        <li class="list-group-item"><a href="{% url 'user_words' user.id %}">{{ user.user_name }}</a></li>
+    {% empty %}
+        <li class="list-group-item" style="display: block;">Пока что нет ни одного пользователя!</li>
     {% endfor %}
-<a href="{% url 'create_user' %}">Добавить пользователя</a>
+    </ul>
+    <a class="btn btn-success" href="{% url 'create_user' %}">
+        Добавить пользователя <span class="glyphicon glyphicon-name"></span>
+
+    </a>
+{% endblock %}

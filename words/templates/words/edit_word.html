@@ -1,22 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h1>Редактирование слова</h1>
+{% extends 'index.html' %}
 
-
+{% block content %}
+<div class="alert alert-success" role="alert">
+      <strong>Редактирование слова</strong>
+    </div>
 
 <form action="{% url 'edit_word' user_id word_id %}" method="post">
     {% csrf_token %}
-    <label for="word_text">Оригинал: </label>
-    <input id="word_text" type="text" name="word_text" value="{{ word.word_text }}">
-    <label for="translation_text">Перевод: </label>
-    <input id="translation_text" type="text" name="translation_text" value="{{ word.translation_text }}">
-    <input type="submit" value="Отредактировать слово"/>
+    {{ form }}
+{#    <label for="word_text">Оригинал: </label>#}
+{#    <input id="word_text" type="text" name="word_text" value="{{ word.word_text }}">#}
+{#    <label for="translation_text">Перевод: </label>#}
+{#    <input id="translation_text" type="text" name="translation_text" value="{{ word.translation_text }}">#}
+    <input type="submit" class="btn btn-success" value="Отредактировать слово"/>
 </form>
 
-</body>
-</html>
+{% endblock %}

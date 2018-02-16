@@ -1,18 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h1>Добавление нового пользователя</h1>
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="alert alert-success" role="alert">
+      <strong>Добавление нового пользователя</strong>
+    </div>
 
 <form action="{% url 'create_user' %}" method="post">
     {% csrf_token %}
     <label for="user_name">Имя: </label>
     <input id="user_name" type="text" name="user_name">
-<input type="submit" value="Добавить пользователя"/>
+<input type="submit" class="btn btn-success" value="Добавить пользователя"/>
 </form>
 
-</body>
-</html>
+{% endblock %}

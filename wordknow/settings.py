@@ -50,7 +50,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'enlapp.urls'
+ROOT_URLCONF = 'wordknow.urls'
 
 TEMPLATES = [
     {
@@ -69,7 +69,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'enlapp.wsgi.application'
+WSGI_APPLICATION = 'wordknow.wsgi.application'
 
 
 # Database
