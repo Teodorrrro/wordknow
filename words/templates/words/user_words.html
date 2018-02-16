@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>{{ user.user_name }}</h1>
+    {% for word in words %}
+        <li>{{ word.word_text }} --- {{ word.translation_text }} -- <a href="{% url 'edit_word' user.id word.id %}">Изменить</a> / <a href="{% url 'delete_word' user.id word.id %}">Удалить</a></li>
+    {% endfor %}
+
+<hr>
+<a href="{% url 'create_word' user.id %}">Добавить слово</a>
+</body>
+</html>
